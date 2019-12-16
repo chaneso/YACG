@@ -39,6 +39,8 @@ public class Game {
 				turns.nextFaze(pronadjiPoslednjegIgracaPoteza());	
 				if(turns.getFaze().getName()=="Main1") {
 					turns.getPlayer().drawCards(1);
+					turns.getPlayer().untapAll(field);
+					playedLands=0;
 				}
 			}else {
 				field.popStack();
@@ -66,8 +68,9 @@ public class Game {
 			return false;
 		}
 		if(card instanceof Land) {
-			if(playedLands==0) {
+			if(playedLands==0 && field.isStackEmpty()) {
 				field.addCardToField((Pernament) card);
+				playedLands-=-1;
 				return true;
 			}else {
 				return false;
@@ -77,8 +80,9 @@ public class Game {
 			if (Igrac == priority) {
 				if (Igrac == turns.getPlayer() && field.isStackEmpty()) {
 					if (Igrac.isCardInHand(card)) {
-						Igrac.setMana(Igrac.getMana() - card.getCost());
+						cleanUpStep();
 						Igrac.tapLands(field,card.getCost()-Igrac.getMana());
+						Igrac.setMana(Igrac.getMana() - card.getCost());
 						field.castSpell(card);
 						return true;
 					}
@@ -97,6 +101,7 @@ public class Game {
 		if (players.size() == 1) {
 			winner = players.get(0);
 			System.out.println("Pobednik je:" + winner + "!");
+			System.exit(0); 
 		}
 	}
 
@@ -119,5 +124,8 @@ public class Game {
 
 	public void ispisiFaze() {
 		System.out.println(turns.getFaze());
+	}
+	public Faze getFaze() {
+		return turns.getFaze();
 	}
 }

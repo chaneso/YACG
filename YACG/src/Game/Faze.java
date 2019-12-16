@@ -17,7 +17,11 @@ public class Faze {
 		this.name = name;
 		faze = new ArrayList<Faze>();
 	}
-
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Trenutna faza:"+name;
+	}
 	public String getName() {
 		return name;
 	}

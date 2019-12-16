@@ -3,12 +3,15 @@ package Game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.sun.org.apache.xerces.internal.dom.DeepNodeListImpl;
+
 public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("radi?");
 		ArrayList<Player> igraci = new ArrayList<Player>();
 		igraci.add(new Player(20, "marko"));
+		igraci.add(new Player(20, "pera"));
 		Deck spil = new Deck(new ArrayList<Card>());
 		for (int i = 0; i < 40; i++) {
 			spil.addCard(new Creature(2, "Bear", igraci.get(0).getIme(), false, 2, 2));
@@ -26,14 +29,16 @@ public class Main {
 			igraci.get(0).ispisiRuku();
 			System.out.println("biraj redni broj karte koju bi igrao:");
 			input = myObj.nextLine(); // Read user input
-			System.out.println("input:" + input);
 				try {
-					if (igra.playCard(igraci.get(0).lookCardByIndex(Integer.parseInt(input) - 1))) {
-						igraci.get(0).takeCardByIndex(Integer.parseInt(input) - 1);
+					if(igra.getFaze().getName()=="Main1" || igra.getFaze().getName()=="Main2") {
+						if (igra.playCard(igraci.get(0).lookCardByIndex(Integer.parseInt(input) - 1))) {
+							igraci.get(0).takeCardByIndex(Integer.parseInt(input) - 1);
+						}
 					}
 				} catch (Exception e) {
 					igra.passPriority();
 				}
+				igra.stateBaseAction();
 				igra.ispisiFaze();
 				igra.ispisFilda();
 				igra.ispisStack();

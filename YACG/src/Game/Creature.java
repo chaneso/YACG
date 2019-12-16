@@ -26,7 +26,7 @@ public class Creature extends Pernament {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return name+" POW:"+Integer.toString(pow)+" DEF:"+Integer.toString(def);
+		return name+" POW:"+Integer.toString(pow)+" DEF:"+Integer.toString(def)+" Mana cost:"+cost;
 	}
 	
 	public int getPow() {

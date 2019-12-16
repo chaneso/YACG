@@ -180,7 +180,7 @@ public class Player implements Serializable{
 		ArrayList<Pernament> pernamente = field.getField();
 		int brojalo=0;
 		for(Pernament ele:pernamente) {
-			if(ele instanceof Land && ele.getimeVlasnika()==ime && ele.isTapped()==false) {
+			if(ele instanceof Land && ele.getimeVlasnika().equals(ime) && ele.isTapped()==false) {
 				brojalo-=-1;
 			}
 		}
@@ -193,7 +193,7 @@ public class Player implements Serializable{
 		ArrayList<Pernament> pernamente = field.getField();
 		int brojalo=0;
 		for(Pernament ele:pernamente) {
-			if(ele instanceof Land && ele.getimeVlasnika()==ime && ele.isTapped()==false) {
+			if(ele instanceof Land && ele.getimeVlasnika().equals(ime) && ele.isTapped()==false) {
 				ele.setTapped(true);
 				brojalo-=-1;
 				if(brojalo==i) {
@@ -202,5 +202,13 @@ public class Player implements Serializable{
 			}
 		}
 		return brojalo;
+	}
+
+	public void untapAll(Field field) {
+		for(Pernament ele:field.getField()) {
+			if(ele.getimeVlasnika()==ime) {
+				ele.setTapped(false);
+			}
+		}
 	}
 }
