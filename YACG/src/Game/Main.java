@@ -30,7 +30,7 @@ public class Main {
 			System.out.println("biraj redni broj karte koju bi igrao:");
 			input = myObj.nextLine(); // Read user input
 				try {
-					if(igra.getFaze().getName()=="Main1" || igra.getFaze().getName()=="Main2") {
+					if(igra.getFaze().getName().equals("Main1") || igra.getFaze().getName().equals("Main2")) {
 						if (igra.playCard(igraci.get(0).lookCardByIndex(Integer.parseInt(input) - 1))) {
 							igraci.get(0).takeCardByIndex(Integer.parseInt(input) - 1);
 						}
