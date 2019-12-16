@@ -1,0 +1,2 @@
+Known bugs:
+discardCards i sendCardsDeck lose ime i nesalju se karte u Playeru
