@@ -3,8 +3,6 @@ package Game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.sun.org.apache.xerces.internal.dom.DeepNodeListImpl;
-
 public class Main {
 
 	public static void main(String[] args) {
